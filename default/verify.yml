@@ -9,7 +9,7 @@
 
     - name: Include test tasks
       ansible.builtin.include_role:
-        name: "{{ ansible_env.ROLE_NAME }}"
+        name: "{{ lookup('env', 'ROLE_NAME') }}"
         tasks_from: tests
 
 ...
