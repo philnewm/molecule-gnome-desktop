@@ -1,0 +1,14 @@
+---
+
+- name: Create and configure ansible-firefox
+  hosts: client
+
+  # TODO local testing only
+  # debugger: on_failed
+
+  roles:
+    - role: ansible-role
+      tasks_from: main
+      role_state: present
+
+...

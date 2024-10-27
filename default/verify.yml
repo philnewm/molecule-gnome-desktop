@@ -1,0 +1,15 @@
+---
+
+- name: Verify
+  hosts: client
+
+  tasks:
+    - name: Gather package facts
+      ansible.builtin.package_facts:
+
+    - name: Include test tasks
+      ansible.builtin.include_role:
+        name: ansible-role
+        tasks_from: tests
+
+...
