@@ -9,9 +9,21 @@
 
   tasks:
     # TODO check if VM even exists
-  roles:
-    - role: "{{ lookup('env', 'ROLE_NAME') }}"
-      state: absent
+    - name: Read meta/main.yml from the role directory
+      ansible.builtin.slurp:
+        src: "../../meta/main.yml"
+      register: role_meta_file
+      delegate_to: localhost
+
+    - name: Decode and parse the metadata
+      ansible.builtin.set_fact:
+        role_meta: "{{ role_meta_file.content | b64decode | from_yaml }}"
+
+    - name: Include role
+      ansible.builtin.include_role:
+        name: "ansible-{{ role_meta.galaxy_info.role_name }}"
+      vars:
+        state: absent
 
 - name: Cleanup
   hosts: localhost
