@@ -21,7 +21,7 @@
 
     - name: Include role
       ansible.builtin.include_role:
-        name: "ansible-{{ role_meta.galaxy_info.role_name }}"
+        name: "ansible-{{ role_meta.galaxy_info.role_name | replace('_', '-') }}"
       vars:
         state: absent
 
