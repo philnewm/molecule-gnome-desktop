@@ -7,8 +7,8 @@
   # debugger: on_failed
 
   roles:
-    - role: ansible-role
+    - role: "{{ ansible_env.ROLE_NAME }}"
       tasks_from: main
-      role_state: present
+      state: present
 
 ...
