@@ -1,6 +1,6 @@
 ---
 
-- name: Create and configure ansible-firefox
+- name: Create and configure role
   hosts: client
 
   # TODO local testing only
